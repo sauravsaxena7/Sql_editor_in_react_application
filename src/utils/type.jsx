@@ -1,0 +1,5 @@
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const TOTAL_COUNT = "TOTAL_COUNT";
+export const GET_CURRENT_PAGE="GET_CURRENT_PAGE"
+
+export const GET_SINGLE_USER_BY_ID="GET_SINGLE_USER_BY_ID"
