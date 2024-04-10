@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import UserReducer from "./UserReducer";
+import QueryReducer from "./QueryReducer";
 
 export default combineReducers({
-    UserReducer
+    QueryReducer
 });

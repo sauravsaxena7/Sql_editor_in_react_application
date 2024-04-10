@@ -13,3 +13,11 @@
     padding: 10px 16px;
     box-shadow: none !important;
   }
+
+  .border-tr {
+    border-left: 4px solid #0eb196 !important;
+  }
+  .border-around{
+    border: 1px solid #0eb196 !important;
+    border-radius: 1px;
+  }

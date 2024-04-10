@@ -1,5 +1,5 @@
 import { HttpUtil } from "../../utils/http-utils";
-import { GET_ALL_USERS, GET_SINGLE_USER_BY_ID, TOTAL_COUNT } from "../../utils/type";
+import { GET_ALL_DATABASE, GET_ALL_USERS, GET_SINGLE_USER_BY_ID, QUERY_EXECUTION_DATA, TOTAL_COUNT } from "../../utils/type";
 
 
 
@@ -30,30 +30,34 @@ export const GetSingleUserById = (id) => (dispatch) => {
       }
     );
 };
-export const deleteUserById = (id) => (dispatch) => {
-    const url = `http://127.0.0.1:5000/user/deleteUser/${id}`;
-    return HttpUtil.makeDELETE(url, {}, {}).then(
+export const GetAllDatabase = () => (dispatch) => {
+    const url = `http://127.0.0.1:5000/query/GetAllDatabase`;
+    return HttpUtil.makeGET(url, {}, {}).then(
       (res) => {
         console.log("res",res?.data?.payload)
+        getDispatch(GET_ALL_DATABASE, res?.data?.result, dispatch);
+        
+      }
+    );
+};
+export const GetQueryExecutionData = (e) => (dispatch) => {
+    const url = `http://127.0.0.1:5000/query/ExecuteQuery`;
+    return HttpUtil.makePOST(url,e, {}).then(
+      (res) => {
+        console.log("ExecuteQuery",res?.data)
+        getDispatch(QUERY_EXECUTION_DATA, res?.data, dispatch);
+        
+      }
+    );
+};
+export const CreateNewDatabase = (e) => () => {
+    const url = `http://127.0.0.1:5000/query/createDatabase`;
+    return HttpUtil.makePOST(url,e, {}).then(
+      (res) => {
+        console.log("createDatabase",res?.data)  
+        return res?.data;
       }
     );
 };
 
 
-export const addUserAction = (e) => (dispatch) => {
- 
-  const url = `http://127.0.0.1:5000/user/newUser`;
-  return HttpUtil.makePOST(url, e, {}).then(
-    (res) => {
-      console.log("add new user res",res)
-    }
-  );
-};
-export const UpdateUserById = (e) => (dispatch) => {
-  const url = `http://127.0.0.1:5000/user/UpdateUserById`;
-  return HttpUtil.makePUT(url, e, {}).then(
-    (res) => {
-      console.log("http://127.0.0.1:5000/user/UpdateUserById",res)
-    }
-  );
-};

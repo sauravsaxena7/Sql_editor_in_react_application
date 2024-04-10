@@ -1,10 +1,12 @@
-import { GET_ALL_USERS, GET_CURRENT_PAGE, GET_SINGLE_USER_BY_ID, TOTAL_COUNT } from "../../utils/type";
+import { GET_ALL_DATABASE, GET_ALL_USERS, GET_CURRENT_PAGE, GET_SINGLE_USER_BY_ID, QUERY_EXECUTION_DATA, TOTAL_COUNT } from "../../utils/type";
 
 const initialState = {
   getAllUsers: [],
   totalCount: [],
   getCurrentPage:1,
-  getSingleUserById:{}
+  getSingleUserById:{},
+  getAllDatabase:[],
+  queryExecutionData:{}
 };
 
 
@@ -30,6 +32,17 @@ export default (state = initialState, action) => {
           ...state,
           getSingleUserById: action.payload,
         };
+
+        case GET_ALL_DATABASE :
+          return {
+            ...state,
+            getAllDatabase: action.payload,
+          };
+        case QUERY_EXECUTION_DATA :
+          return {
+            ...state,
+            queryExecutionData: action.payload,
+          };
       default:
         return state;
     }
